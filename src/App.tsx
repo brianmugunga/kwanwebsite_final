@@ -1,3 +1,4 @@
+import Photo6 from './assets/Photo-6.jpg';  // or .png depending on your file
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -7,10 +8,7 @@ import About from './pages/About';
 import CV from './pages/CV';
 import Research from './pages/Research';
 import Publications from './pages/Publications';
-import Teaching from './pages/Teaching';
-import Projects from './pages/Projects';
-import Portfolio from './pages/Portfolio';
-import Blog from './pages/Blog';
+import Service from './pages/Service';
 import Contact from './pages/Contact';
 
 function App() {
@@ -25,9 +23,7 @@ function App() {
             <Route path="/cv" element={<CV />} />
             <Route path="/research" element={<Research />} />
             <Route path="/publications" element={<Publications />} />
-            <Route path="/teaching" element={<Teaching />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/blog" element={<Blog />} />
+            <Route path="/service" element={<Service />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>

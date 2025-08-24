@@ -32,10 +32,8 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li><Link to="/about" className="text-stone-300 hover:text-white transition-colors">About</Link></li>
-              <li><Link to="/research" className="text-stone-300 hover:text-white transition-colors">Research</Link></li>
+              <li><Link to="/research" className="text-stone-300 hover:text-white transition-colors">Research & Projects</Link></li>
               <li><Link to="/publications" className="text-stone-300 hover:text-white transition-colors">Publications</Link></li>
-              <li><Link to="/teaching" className="text-stone-300 hover:text-white transition-colors">Teaching</Link></li>
-              <li><Link to="/projects" className="text-stone-300 hover:text-white transition-colors">Projects</Link></li>
             </ul>
           </div>
 
@@ -48,10 +46,6 @@ const Footer = () => {
                 <span className="text-stone-300">kwan.blounthill@asu.edu</span>
               </li>
               <li className="flex items-center space-x-2">
-                <Phone className="h-4 w-4" />
-                <span className="text-stone-300">+1 (602) 496-0450</span>
-              </li>
-              <li className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />
                 <span className="text-stone-300">Phoenix, AZ</span>
               </li>
@@ -61,7 +55,7 @@ const Footer = () => {
 
         <div className="border-t border-stone-700 mt-8 pt-6 text-center">
           <p className="text-stone-300">
-            © 2024 Dr. Kwan‑Lamar Blount‑Hill. All rights reserved. Advancing justice through scholarship and advocacy.
+            © 2025 Dr. Kwan‑Lamar Blount‑Hill. All rights reserved. Advancing justice through scholarship and advocacy.
           </p>
         </div>
       </div>

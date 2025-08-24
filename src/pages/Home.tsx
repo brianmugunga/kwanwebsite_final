@@ -1,8 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Scale, Heart, Award, Users, Trophy } from 'lucide-react';
+import { ArrowRight, BookOpen, Scale, Heart } from 'lucide-react';
+import Photo6 from '../assets/Photo-6.jpg';
 
 const Home = () => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
+  const [showSubtitle, setShowSubtitle] = useState(false);
+  const [showDescription, setShowDescription] = useState(false);
+  const [showButtons, setShowButtons] = useState(false);
+  const [showImage, setShowImage] = useState(false);
+  const [statsAnimated, setStatsAnimated] = useState(false);
+  const [statValues, setStatValues] = useState([0, 0, 0, 0]);
+  
+  const fullText = 'Dr. Kwan-Lamar Blount-Hill';
+  
+  useEffect(() => {
+    let currentIndex = 0;
+    const typingSpeed = 100; // milliseconds per character
+    
+    const typeWriter = () => {
+      if (currentIndex < fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex + 1));
+        currentIndex++;
+        setTimeout(typeWriter, typingSpeed);
+      } else {
+        // Hide cursor after typing completes
+        setTimeout(() => setShowCursor(false), 500);
+        // After typing is complete, show other elements with staggered timing
+        setTimeout(() => setShowSubtitle(true), 300);
+        setTimeout(() => setShowDescription(true), 800);
+        setTimeout(() => setShowButtons(true), 1300);
+        setTimeout(() => setShowImage(true), 400);
+      }
+    };
+    
+    // Start typing after a brief delay
+    const startDelay = setTimeout(typeWriter, 500);
+    
+    return () => clearTimeout(startDelay);
+  }, []);
+
   const features = [
     {
       icon: <BookOpen className="h-8 w-8" />,
@@ -22,66 +60,184 @@ const Home = () => {
   ];
 
   const stats = [
-    { number: '15+', label: 'Years Experience' },
-    { number: '50+', label: 'Publications' },
-    { number: '3', label: 'Universities' },
-    { number: '100+', label: 'Students Mentored' }
+    { number: '8+', label: 'Years Experience', targetValue: 8, prefix: '', suffix: '+' },
+    { number: '33+', label: 'Publications', targetValue: 33, prefix: '', suffix: '+' },
+    { number: '4+', label: 'Universities', targetValue: 4, prefix: '', suffix: '+' },
+    { number: '$1.2M+', label: 'Research Funding', targetValue: 1.2, prefix: '$', suffix: 'M+' }
   ];
+
+  // Scroll observer for stats animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !statsAnimated) {
+            setStatsAnimated(true);
+            animateStats();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    const statsSection = document.getElementById('stats-section');
+    if (statsSection) {
+      observer.observe(statsSection);
+    }
+
+    return () => observer.disconnect();
+  }, [statsAnimated]);
+
+  // Counter animation function
+  const animateStats = () => {
+    const duration = 2000; // 2 seconds
+    const frameRate = 60;
+    const totalFrames = duration / (1000 / frameRate);
+    
+    let frame = 0;
+    
+    const animate = () => {
+      frame++;
+      const progress = frame / totalFrames;
+      const easeProgress = 1 - Math.pow(1 - progress, 3); // Ease-out cubic
+      
+      setStatValues(stats.map((stat) => {
+        return Math.min(stat.targetValue * easeProgress, stat.targetValue);
+      }));
+      
+      if (frame < totalFrames) {
+        requestAnimationFrame(animate);
+      }
+    };
+    
+    requestAnimationFrame(animate);
+  };
+
+  // Format stat value for display
+  const formatStatValue = (value: number, stat: any) => {
+    if (stat.prefix === '$') {
+      return `${stat.prefix}${value.toFixed(1)}${stat.suffix}`;
+    }
+    return `${stat.prefix}${Math.floor(value)}${stat.suffix}`;
+  };
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-stone-900 via-amber-900 to-stone-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                Dr. Kwan‑Lamar
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-400"> Blount‑Hill</span>
+      <section className="bg-gradient-to-br from-stone-900 via-amber-900 to-stone-800 text-white pt-4 pb-4 lg:pt-6 lg:pb-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-2 lg:mt-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+            <div className="flex flex-col justify-start space-y-4 order-2 lg:order-1">
+              {/* Animated Name */}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight min-h-[4rem] lg:min-h-[5rem]">
+                <span className="inline-block">
+                  {displayedText}
+                  {showCursor && <span className="animate-pulse text-amber-400">|</span>}
+                </span>
               </h1>
-              <p className="text-2xl md:text-3xl text-amber-200 mb-4 font-light">
-                Scholar. Attorney. Advocate.
-              </p>
-              <p className="text-xl text-stone-300 mb-8 max-w-2xl leading-relaxed">
-                Criminologist, professor, researcher, and advocate for social and ecological justice. 
-                Advancing transformative scholarship that centers Black, queer, and marginalized voices.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  to="/research"
-                  className="bg-amber-700 hover:bg-amber-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center space-x-2"
-                >
-                  <span>Explore Research</span>
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="border-2 border-white text-white hover:bg-white hover:text-stone-900 px-8 py-4 rounded-lg font-semibold transition-colors duration-200"
-                >
-                  Get In Touch
-                </Link>
+              
+              {/* Animated Subtitle */}
+              <div className={`transition-all duration-700 ease-out transform ${
+                showSubtitle 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-4'
+              }`}>
+                <p className="text-xl sm:text-2xl md:text-3xl text-amber-200 font-light">
+                  Scholar. Attorney. Advocate.
+                </p>
+              </div>
+              
+              {/* Animated Description */}
+              <div className={`transition-all duration-700 ease-out transform ${
+                showDescription 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-4'
+              }`}>
+                <p className="text-lg md:text-xl text-stone-300 leading-relaxed max-w-2xl">
+                  Criminologist, professor, researcher, and advocate for social and ecological justice. 
+                  Advancing transformative scholarship that centers Black, queer, and marginalized voices.
+                </p>
+              </div>
+              
+              {/* Animated Buttons */}
+              <div className={`transition-all duration-700 ease-out transform ${
+                showButtons 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-4'
+              }`}>
+                <div className="flex flex-col sm:flex-row gap-4 pt-2 mb-0">
+                  <Link
+                    to="/research"
+                    className="bg-amber-700 hover:bg-amber-800 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl hover:-translate-y-1"
+                  >
+                    <span>Explore Research</span>
+                    <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="border-2 border-white text-white hover:bg-white hover:text-stone-900 px-8 py-3 rounded-lg font-semibold transition-all duration-200 text-center hover:shadow-lg hover:-translate-y-1"
+                  >
+                    Get In Touch
+                  </Link>
+                </div>
               </div>
             </div>
-            <div className="relative">
-              <div className="bg-gradient-to-r from-amber-600 to-stone-700 rounded-2xl h-96 w-full"></div>
-              <div className="absolute inset-0 bg-black bg-opacity-20 rounded-2xl flex items-center justify-center">
-                <span className="text-white text-lg font-medium">Professional Photo</span>
+            
+            {/* Animated Image */}
+            <div className={`flex justify-center items-start order-1 lg:order-2 -mt-4 lg:-mt-6 transition-all duration-1000 ease-out transform ${
+              showImage 
+                ? 'opacity-100 translate-y-0 scale-100' 
+                : 'opacity-0 translate-y-8 scale-95'
+            }`}>
+              <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300">
+                <img
+                  src={Photo6}
+                  alt="Dr. Kwan-Lamar Blount-Hill professional"
+                  className="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                {/* Subtle border glow effect */}
+                <div className="absolute inset-0 rounded-2xl ring-1 ring-white/20"></div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
+      {/* Animated Stats Section */}
+      <section id="stats-section" className="py-16 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-amber-700 mb-2">
-                  {stat.number}
+              <div 
+                key={index} 
+                className={`text-center transform transition-all duration-700 ease-out ${
+                  statsAnimated 
+                    ? 'opacity-100 translate-y-0 scale-100' 
+                    : 'opacity-0 translate-y-8 scale-95'
+                }`}
+                style={{ 
+                  transitionDelay: `${index * 150}ms` // Staggered animation
+                }}
+              >
+                <div className="relative group">
+                  {/* Animated background glow */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-200 to-yellow-200 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 transform scale-110"></div>
+                  
+                  {/* Counter number */}
+                  <div className="relative text-4xl md:text-5xl font-bold text-amber-700 mb-3 py-4">
+                    {statsAnimated ? formatStatValue(statValues[index], stat) : '0'}
+                  </div>
+                  
+                  {/* Label */}
+                  <div className="text-stone-600 font-semibold text-sm md:text-base">
+                    {stat.label}
+                  </div>
+                  
+                  {/* Decorative line */}
+                  <div className="mt-3 mx-auto w-12 h-1 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-full opacity-60"></div>
                 </div>
-                <div className="text-stone-600 font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -131,12 +287,12 @@ const Home = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {[
+            {[ 
               { title: 'Social Identity Theory Research', type: 'Research', color: 'from-amber-500 to-orange-600' },
               { title: 'Decolonizing Criminology', type: 'Publication', color: 'from-stone-600 to-stone-700' },
               { title: 'LGBTQ+ Justice Initiative', type: 'Advocacy', color: 'from-emerald-500 to-teal-600' }
             ].map((item, index) => (
-              <div key={item} className="bg-gray-100 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-transform duration-300">
+              <div key={index} className="bg-gray-100 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-transform duration-300">
                 <div className={`bg-gradient-to-br ${item.color} h-48`}></div>
                 <div className="p-6">
                   <h3 className="text-lg font-semibold text-stone-900 mb-2">
@@ -156,7 +312,7 @@ const Home = () => {
           
           <div className="text-center">
             <Link
-              to="/projects"
+              to="/research"
               className="bg-amber-700 hover:bg-amber-800 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center space-x-2"
             >
               <span>View All Work</span>

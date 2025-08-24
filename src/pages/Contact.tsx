@@ -31,12 +31,6 @@ const Contact = () => {
       link: 'mailto:kwan.blounthill@asu.edu'
     },
     {
-      icon: <Phone className="h-6 w-6" />,
-      title: 'Phone',
-      value: '+1 (602) 496-0450',
-      link: 'tel:+16024960450'
-    },
-    {
       icon: <MapPin className="h-6 w-6" />,
       title: 'Location',
       value: 'Phoenix, AZ',
