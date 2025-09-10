@@ -27,8 +27,8 @@ const Contact = () => {
     {
       icon: <Mail className="h-6 w-6" />,
       title: 'Email',
-      value: 'kwan.blounthill@asu.edu',
-      link: 'mailto:kwan.blounthill@asu.edu'
+      value: 'kbh@su.edu',
+      link: 'mailto:kbh@su.edu'
     },
     {
       icon: <MapPin className="h-6 w-6" />,
