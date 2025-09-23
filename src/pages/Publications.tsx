@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BookOpen, Download, ExternalLink, Calendar, Users, Filter } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import BiologicalConservationCover from '../assets/publications/Biological Conservation journal.jpg';
 import CriminalJusticeBehaviorCover from '../assets/publications/Criminal Justice and Behavior journal.jpg';
 
@@ -176,9 +177,15 @@ const Publications = () => {
           </div>
           
           <div className="space-y-8">
-            {featuredPublications.map((pub) => (
-              <div key={pub.id} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
+            {featuredPublications.map((pub) => {
+              // Create anchor ID based on publication title
+              let anchorId = '';
+              if (pub.id === 1) anchorId = 'social-identity-theory';
+              if (pub.id === 3) anchorId = 'decolonizing-criminology';
+              
+              return (
+                <div key={pub.id} id={anchorId} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
                   {/* Publication Image */}
                   <div className="lg:col-span-2">
                     {pub.image ? (
@@ -253,7 +260,7 @@ const Publications = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            )})}
           </div>
         </div>
       </section>
@@ -293,8 +300,12 @@ const Publications = () => {
 
           {/* Publications List */}
           <div className="space-y-6">
-            {filteredPublications.map((pub) => (
-              <div key={pub.id} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+            {filteredPublications.map((pub) => {
+              let anchorId = '';
+              if (pub.id === 4) anchorId = 'queer-criminology';
+              
+              return (
+                <div key={pub.id} id={anchorId} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-2">
@@ -340,7 +351,8 @@ const Publications = () => {
                   )}
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -396,14 +408,14 @@ const Publications = () => {
             new publications and speaking opportunities.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="bg-white text-amber-700 hover:bg-stone-100 px-8 py-4 rounded-lg font-semibold transition-colors duration-200"
             >
               Get In Touch
-            </a>
+            </Link>
             <a
-              href="https://scholar.google.com/citations?user=your-id"
+              href="https://scholar.google.com/citations?user=kwan-lamar-blount-hill"
               target="_blank"
               rel="noopener noreferrer"
               className="border-2 border-white text-white hover:bg-white hover:text-amber-700 px-8 py-4 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center space-x-2"

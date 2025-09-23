@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Download, ExternalLink, Calendar, MapPin, Award, BookOpen, GraduationCap, Users, Building, Star, ChevronDown, ChevronUp, FileText, TrendingUp, DollarSign, Briefcase } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const CV = () => {
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
@@ -49,14 +50,24 @@ const CV = () => {
       title: 'Assistant Professor',
       institution: 'School of Criminology and Criminal Justice, Watts College of Public Service and Community Solutions, Arizona State University',
       period: 'June 2022 – present',
-      location: 'Phoenix, AZ',
+      location: (
+        <div className="space-y-1">
+          <div>Phoenix, AZ</div>
+          <div>NY, USA</div>
+        </div>
+      ),
       type: 'primary'
     },
     {
       title: 'Program Lead for Justice and Equity in Conservation',
       institution: 'Center for Biodiversity Outcomes, Global Institute of Sustainability and Innovation / School of Life Sciences, College of Liberal Arts and Sciences, Arizona State University',
       period: 'June 2023 – present',
-      location: 'Phoenix, AZ',
+      location: (
+        <div className="space-y-1">
+          <div>Phoenix, AZ</div>
+          <div>NY, USA</div>
+        </div>
+      ),
       type: 'secondary'
     },
     {
@@ -212,7 +223,11 @@ const CV = () => {
           <div className="mb-8">
             <p className="text-2xl text-amber-200 font-semibold mb-2">Kwan-Lamar Blount-Hill, JD, PhD</p>
             <p className="text-lg text-stone-300 mb-4">Assistant Professor • Arizona State University</p>
-            <p className="text-base text-stone-400 mb-6">Phoenix, AZ / New York, NY • kbh@asu.edu</p>
+            <div className="text-base text-stone-400 mb-6 space-y-1">
+              <div>Phoenix, AZ</div>
+              <div>NY, USA / New York, NY</div>
+              <div>kbh@asu.edu</div>
+            </div>
             <p className="text-xl text-stone-300 max-w-3xl mx-auto leading-relaxed">
               A comprehensive overview of my academic journey, professional experience, 
               and contributions to criminology, social justice, and conservation.
@@ -318,9 +333,9 @@ const CV = () => {
                       <Calendar className="h-5 w-5" />
                       <span className="font-medium">{position.period}</span>
                     </div>
-                    <div className="flex items-center space-x-2 text-stone-600">
-                      <MapPin className="h-5 w-5" />
-                      <span>{position.location}</span>
+                    <div className="flex items-start space-x-2 text-stone-600">
+                      <MapPin className="h-5 w-5 mt-0.5 flex-shrink-0" />
+                      <div>{position.location}</div>
                     </div>
                   </div>
                 </div>
@@ -500,12 +515,12 @@ const CV = () => {
             I'm always open to discussing research opportunities, speaking engagements, 
             and collaborative projects in criminology and social justice.
           </p>
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="bg-white text-amber-700 hover:bg-stone-100 px-8 py-4 rounded-lg font-semibold transition-colors duration-200 inline-block"
           >
             Get In Touch
-          </a>
+          </Link>
         </div>
       </section>
     </div>

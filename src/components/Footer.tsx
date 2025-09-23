@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Linkedin, Twitter, BookOpen } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Twitter, BookOpen, Instagram, Facebook } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -15,14 +15,41 @@ const Footer = () => {
               community engagement, and policy reform.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-stone-300 hover:text-amber-400 transition-colors">
+              <a 
+                href="https://www.linkedin.com/in/kwan-lamar-blount-hill" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-stone-300 hover:text-amber-400 transition-colors"
+                title="LinkedIn"
+              >
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="#" className="text-stone-300 hover:text-amber-400 transition-colors">
+              <a 
+                href="https://twitter.com/kwanbh" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-stone-300 hover:text-amber-400 transition-colors"
+                title="Twitter"
+              >
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="text-stone-300 hover:text-amber-400 transition-colors">
+              <a 
+                href="https://scholar.google.com/citations?user=kwan-lamar-blount-hill" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-stone-300 hover:text-amber-400 transition-colors"
+                title="Google Scholar"
+              >
                 <BookOpen className="h-5 w-5" />
+              </a>
+              <a 
+                href="https://www.instagram.com/kwanlamarblounthill" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-stone-300 hover:text-amber-400 transition-colors"
+                title="Instagram"
+              >
+                <Instagram className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -45,9 +72,12 @@ const Footer = () => {
                 <Mail className="h-4 w-4" />
                 <span className="text-stone-300">kbh@su.edu</span>
               </li>
-              <li className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4" />
-                <span className="text-stone-300">Phoenix, AZ</span>
+              <li className="flex items-start space-x-2">
+                <MapPin className="h-4 w-4 mt-0.5" />
+                <div className="text-stone-300 space-y-1">
+                  <div>Phoenix, AZ</div>
+                  <div>NY, USA</div>
+                </div>
               </li>
             </ul>
           </div>

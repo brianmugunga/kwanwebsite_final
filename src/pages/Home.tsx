@@ -288,34 +288,56 @@ const Home = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {[ 
-              { title: 'Social Identity Theory Research', type: 'Research', color: 'from-amber-500 to-orange-600' },
-              { title: 'Decolonizing Criminology', type: 'Publication', color: 'from-stone-600 to-stone-700' },
-              { title: 'LGBTQ+ Justice Initiative', type: 'Advocacy', color: 'from-emerald-500 to-teal-600' }
+              { 
+                title: 'Social Identity Theory Research', 
+                type: 'Research', 
+                color: 'from-amber-500 to-orange-600',
+                link: '/publications#social-identity-theory',
+                description: 'Reimagining community in criminal justice through shared narrative frameworks.'
+              },
+              { 
+                title: 'Decolonizing Criminology', 
+                type: 'Publication', 
+                color: 'from-stone-600 to-stone-700',
+                link: '/publications#decolonizing-criminology',
+                description: 'A comprehensive examination of Indigenous and non-Western epistemologies in criminology.'
+              },
+              { 
+                title: 'Queer Criminology Research', 
+                type: 'Research', 
+                color: 'from-emerald-500 to-teal-600',
+                link: '/publications#queer-criminology',
+                description: 'Exploring LGBTQ+ experiences and the politics of visibility in criminal justice systems.'
+              }
             ].map((item, index) => (
-              <div key={index} className="bg-gray-100 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-transform duration-300">
+              <Link 
+                key={index} 
+                to={item.link}
+                className="bg-gray-100 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 hover:shadow-lg block"
+              >
                 <div className={`bg-gradient-to-br ${item.color} h-48`}></div>
                 <div className="p-6">
                   <h3 className="text-lg font-semibold text-stone-900 mb-2">
                     {item.title}
                   </h3>
                   <p className="text-stone-600 mb-4">
-                    Advancing justice through rigorous scholarship and community-centered advocacy.
+                    {item.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm">{item.type}</span>
                     <span className="bg-stone-100 text-stone-800 px-3 py-1 rounded-full text-sm">2024</span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           
           <div className="text-center">
             <Link
-              to="/research"
+              to="/publications"
               className="bg-amber-700 hover:bg-amber-800 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center space-x-2"
             >
-              <span>View All Work</span>
+              <span>View All Publications</span>
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>

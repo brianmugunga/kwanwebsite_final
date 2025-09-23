@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, MessageCircle, Calendar, BookOpen } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, MessageCircle, Calendar, BookOpen, CheckCircle, AlertCircle } from 'lucide-react';
+import { sendEmail, ContactFormData } from '../utils/emailService';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,18 @@ const Contact = () => {
     message: '',
     inquiryType: 'research-collaboration'
   });
+  
+  const [submissionStatus, setSubmissionStatus] = useState<{
+    isSubmitting: boolean;
+    isSuccess: boolean;
+    isError: boolean;
+    message: string;
+  }>({
+    isSubmitting: false,
+    isSuccess: false,
+    isError: false,
+    message: ''
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -17,23 +30,70 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    
+    // Reset previous status
+    setSubmissionStatus({ isSubmitting: true, isSuccess: false, isError: false, message: '' });
+    
+    try {
+      const result = await sendEmail(formData as ContactFormData);
+      
+      if (result.success) {
+        setSubmissionStatus({
+          isSubmitting: false,
+          isSuccess: true,
+          isError: false,
+          message: result.message
+        });
+        
+        // Reset form on successful submission
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+          inquiryType: 'research-collaboration'
+        });
+      } else {
+        setSubmissionStatus({
+          isSubmitting: false,
+          isSuccess: false,
+          isError: true,
+          message: result.message
+        });
+      }
+    } catch (error) {
+      setSubmissionStatus({
+        isSubmitting: false,
+        isSuccess: false,
+        isError: true,
+        message: 'An unexpected error occurred. Please try again or email directly at kblounthill@gmail.com'
+      });
+    }
+    
+    // Clear status message after 5 seconds
+    setTimeout(() => {
+      setSubmissionStatus({ isSubmitting: false, isSuccess: false, isError: false, message: '' });
+    }, 5000);
   };
 
   const contactInfo = [
     {
       icon: <Mail className="h-6 w-6" />,
       title: 'Email',
-      value: 'kbh@su.edu',
-      link: 'mailto:kbh@su.edu'
+      value: 'kblounthill@gmail.com',
+      link: 'mailto:kblounthill@gmail.com'
     },
     {
       icon: <MapPin className="h-6 w-6" />,
       title: 'Location',
-      value: 'Phoenix, AZ',
+      value: (
+        <div className="space-y-1">
+          <div>Phoenix, AZ</div>
+          <div>NY, USA</div>
+        </div>
+      ),
       link: '#'
     }
   ];
@@ -168,12 +228,38 @@ const Contact = () => {
                   ></textarea>
                 </div>
 
+                {/* Status Messages */}
+                {submissionStatus.message && (
+                  <div className={`p-4 rounded-lg flex items-center space-x-3 ${
+                    submissionStatus.isSuccess 
+                      ? 'bg-green-50 text-green-800 border border-green-200' 
+                      : 'bg-red-50 text-red-800 border border-red-200'
+                  }`}>
+                    {submissionStatus.isSuccess ? (
+                      <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
+                    ) : (
+                      <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0" />
+                    )}
+                    <p className="text-sm">{submissionStatus.message}</p>
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full bg-amber-700 hover:bg-amber-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center space-x-2"
+                  disabled={submissionStatus.isSubmitting}
+                  className="w-full bg-amber-700 hover:bg-amber-800 disabled:bg-amber-400 disabled:cursor-not-allowed text-white px-8 py-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center space-x-2"
                 >
-                  <Send className="h-5 w-5" />
-                  <span>Send Message</span>
+                  {submissionStatus.isSubmitting ? (
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-5 w-5" />
+                      <span>Send Message</span>
+                    </>
+                  )}
                 </button>
               </form>
             </div>
@@ -207,7 +293,9 @@ const Contact = () => {
                 <h3 className="text-2xl font-bold text-stone-900 mb-6">Other Ways to Connect</h3>
                 <div className="space-y-4">
                   <a
-                    href="#"
+                    href="https://scholar.google.com/citations?user=kwan-lamar-blount-hill"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center space-x-4 p-4 rounded-lg border border-stone-200 hover:border-amber-300 hover:bg-amber-50 transition-colors group"
                   >
                     <BookOpen className="h-6 w-6 text-amber-600 group-hover:text-amber-700" />
@@ -217,14 +305,71 @@ const Contact = () => {
                     </div>
                   </a>
                   <a
-                    href="#"
+                    href="https://www.researchgate.net/profile/Kwan_Lamar_Blount_Hill"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center space-x-4 p-4 rounded-lg border border-stone-200 hover:border-amber-300 hover:bg-amber-50 transition-colors group"
                   >
-                    <Calendar className="h-6 w-6 text-amber-600 group-hover:text-amber-700" />
+                    <BookOpen className="h-6 w-6 text-amber-600 group-hover:text-amber-700" />
                     <div>
-                      <div className="font-medium text-stone-900">Schedule a Meeting</div>
-                      <div className="text-sm text-stone-500">Book time for detailed discussions</div>
+                      <div className="font-medium text-stone-900">ResearchGate Profile</div>
+                      <div className="text-sm text-stone-500">Connect with me on ResearchGate</div>
                     </div>
+                  </a>
+                  <a
+                    href="https://orcid.org/0000-0002-5471-0812"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-4 p-4 rounded-lg border border-stone-200 hover:border-amber-300 hover:bg-amber-50 transition-colors group"
+                  >
+                    <BookOpen className="h-6 w-6 text-amber-600 group-hover:text-amber-700" />
+                    <div>
+                      <div className="font-medium text-stone-900">ORCID ID</div>
+                      <div className="text-sm text-stone-500">0000-0002-5471-0812</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              {/* Social Media */}
+              <div className="bg-white p-8 rounded-xl shadow-lg">
+                <h3 className="text-2xl font-bold text-stone-900 mb-6">Social Media & Professional Networks</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <a
+                    href="https://www.linkedin.com/in/kwan-lamar-blount-hill"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 p-3 rounded-lg border border-stone-200 hover:border-amber-300 hover:bg-amber-50 transition-colors group"
+                  >
+                    <BookOpen className="h-5 w-5 text-amber-600 group-hover:text-amber-700" />
+                    <span className="text-stone-900 font-medium text-sm">LinkedIn</span>
+                  </a>
+                  <a
+                    href="https://twitter.com/kwanbh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 p-3 rounded-lg border border-stone-200 hover:border-amber-300 hover:bg-amber-50 transition-colors group"
+                  >
+                    <BookOpen className="h-5 w-5 text-amber-600 group-hover:text-amber-700" />
+                    <span className="text-stone-900 font-medium text-sm">Twitter</span>
+                  </a>
+                  <a
+                    href="https://www.facebook.com/kwanlamar.blounthill"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 p-3 rounded-lg border border-stone-200 hover:border-amber-300 hover:bg-amber-50 transition-colors group"
+                  >
+                    <BookOpen className="h-5 w-5 text-amber-600 group-hover:text-amber-700" />
+                    <span className="text-stone-900 font-medium text-sm">Facebook</span>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/kwanlamarblounthill"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 p-3 rounded-lg border border-stone-200 hover:border-amber-300 hover:bg-amber-50 transition-colors group"
+                  >
+                    <BookOpen className="h-5 w-5 text-amber-600 group-hover:text-amber-700" />
+                    <span className="text-stone-900 font-medium text-sm">Instagram</span>
                   </a>
                 </div>
               </div>

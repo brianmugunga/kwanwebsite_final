@@ -1,5 +1,6 @@
 import React from 'react';
 import { BookOpen, Users, Award, Calendar, MapPin, GraduationCap } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Teaching = () => {
   const currentCourses = [
@@ -369,18 +370,18 @@ const Teaching = () => {
             guest lectures, I'd love to connect and discuss opportunities for collaboration.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="bg-white text-amber-700 hover:bg-stone-100 px-8 py-4 rounded-lg font-semibold transition-colors duration-200"
             >
               Get In Touch
-            </a>
-            <a
-              href="/cv"
+            </Link>
+            <Link
+              to="/cv"
               className="border-2 border-white text-white hover:bg-white hover:text-amber-700 px-8 py-4 rounded-lg font-semibold transition-colors duration-200"
             >
               View Full CV
-            </a>
+            </Link>
           </div>
         </div>
       </section>

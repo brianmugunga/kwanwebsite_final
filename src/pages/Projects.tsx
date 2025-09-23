@@ -65,7 +65,12 @@ const Projects = () => {
       category: 'community',
       type: 'Community Program',
       period: '2019 - Present',
-      location: 'Phoenix, AZ',
+      location: (
+        <div className="space-y-1">
+          <div>Phoenix, AZ</div>
+          <div>NY, USA</div>
+        </div>
+      ),
       description: 'Developed and implemented narrative-based healing circles for formerly incarcerated individuals and their families, focusing on identity reconstruction and community reintegration.',
       impact: 'Served 200+ participants, 85% successful reintegration rate, expanded to 5 community centers',
       collaborators: ['Reentry organizations', 'Faith communities', 'Family support groups'],

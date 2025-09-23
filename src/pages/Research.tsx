@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BookOpen, Users, Brain, Scale, Heart, Globe, ExternalLink, Calendar, MapPin, Award, Filter } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Research = () => {
   const [activeTab, setActiveTab] = useState('research');
@@ -120,7 +121,12 @@ const Research = () => {
       category: 'community',
       type: 'Community Program',
       period: '2019 - Present',
-      location: 'Phoenix, AZ',
+      location: (
+        <div className="space-y-1">
+          <div>Phoenix, AZ</div>
+          <div>NY, USA</div>
+        </div>
+      ),
       description: 'Developed narrative-based healing circles for formerly incarcerated individuals and their families, focusing on identity reconstruction and community reintegration.',
       impact: 'Served 200+ participants, 85% successful reintegration rate, expanded to 5 community centers',
       image: 'from-amber-500 to-orange-600',
@@ -201,9 +207,9 @@ const Research = () => {
                   <p className="text-stone-600 mb-4 leading-relaxed">{area.description}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-stone-500">{area.publications} Publications</span>
-                    <button className="text-amber-700 hover:text-amber-800 font-semibold text-sm">
+                    <Link to="/contact" className="text-amber-700 hover:text-amber-800 font-semibold text-sm">
                       Learn More →
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -365,10 +371,10 @@ const Research = () => {
                   <div className="bg-stone-50 p-3 rounded-lg mb-4">
                     <p className="text-stone-700 text-xs font-medium">{project.impact}</p>
                   </div>
-                  <button className="text-amber-700 hover:text-amber-800 font-semibold text-sm inline-flex items-center space-x-1">
+                  <Link to="/contact" className="text-amber-700 hover:text-amber-800 font-semibold text-sm inline-flex items-center space-x-1">
                     <span>Learn More</span>
                     <ExternalLink className="h-4 w-4" />
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -409,18 +415,18 @@ const Research = () => {
             I'm always open to partnerships that advance justice and equity.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="bg-white text-amber-700 hover:bg-stone-100 px-8 py-4 rounded-lg font-semibold transition-colors duration-200"
             >
               Start a Conversation
-            </a>
-            <a
-              href="/publications"
+            </Link>
+            <Link
+              to="/publications"
               className="border-2 border-white text-white hover:bg-white hover:text-amber-700 px-8 py-4 rounded-lg font-semibold transition-colors duration-200"
             >
               View Publications
-            </a>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,54 +1,37 @@
 import React from 'react';
 import { Download, Award, Calendar, MapPin, Heart, Scale, BookOpen } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const About = () => {
-  const expertise = [
-    { name: 'Critical Criminology', level: 95 },
-    { name: 'Qualitative Research', level: 92 },
-    { name: 'Policy Analysis', level: 88 },
-    { name: 'Community Engagement', level: 90 },
-    { name: 'Legal Advocacy', level: 85 },
-    { name: 'Intersectional Analysis', level: 93 }
-  ];
 
-  const achievements = [
+  const keyAchievements = [
     {
-      year: '2023',
-      title: 'Outstanding Scholar Award',
-      description: 'American Society of Criminology recognition for contributions to critical criminology'
-    },
-    {
-      year: '2022',
-      title: 'Excellence in Teaching Award',
-      description: 'Arizona State University recognition for innovative pedagogy and student mentorship'
-    },
-    {
-      year: '2021',
-      title: 'Emerging Scholar Award',
-      description: 'Academy of Criminal Justice Sciences recognition for early career contributions'
+      year: '2025',
+      title: 'Ruth Shonle Cavan Young Scholar Award',
+      description: 'American Society of Criminology’s most prestigious award for early career scholars, recognizing outstanding contributions to criminological theory and research'
     },
     {
       year: '2020',
-      title: 'Community Impact Award',
-      description: 'Brooklyn Community Justice Coalition recognition for advocacy work'
+      title: 'Doctoral Achievement',
+      description: 'Completed Ph.D. in Criminal Justice while maintaining active community advocacy and developing groundbreaking research on identity and justice'
     }
   ];
 
-  const values = [
+  const personalValues = [
     {
       icon: <Heart className="h-8 w-8" />,
-      title: 'Justice & Liberation',
-      description: 'Committed to dismantling systems of oppression and building pathways to healing and freedom for all communities.'
+      title: 'Faith & Justice',
+      description: 'My Christian faith calls me to work for justice and healing, seeing each person as made in the image of God with inherent dignity and worth.'
     },
     {
       icon: <Scale className="h-8 w-8" />,
-      title: 'Intersectional Advocacy',
-      description: 'Centering the experiences of Black, queer, and marginalized communities in all research and advocacy work.'
+      title: 'Lived Experience',
+      description: 'As a Black, queer person, I bring personal understanding of marginalization to my work, grounding scholarship in authentic experience.'
     },
     {
       icon: <BookOpen className="h-8 w-8" />,
-      title: 'Transformative Education',
-      description: 'Believing in education as a tool for liberation and empowerment, fostering critical consciousness in students.'
+      title: 'Liberation Through Learning',
+      description: 'I believe knowledge should serve freedom—both personal liberation and collective transformation of unjust systems.'
     }
   ];
 
@@ -72,20 +55,13 @@ const About = () => {
                 and education that transforms both minds and systems.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center space-x-2">
+                <Link
+                  to="/cv"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center justify-center space-x-2"
+                >
                   <Download className="h-5 w-5" />
-                  <span>Download CV</span>
-                </button>
-                <div className="flex items-center space-x-4 text-stone-300">
-                  <div className="flex items-center space-x-2">
-                    <MapPin className="h-5 w-5" />
-                    <span>Phoenix, AZ</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Calendar className="h-5 w-5" />
-                    <span>Available</span>
-                  </div>
-                </div>
+                  <span>View Full CV</span>
+                </Link>
               </div>
             </div>
             <div className="relative">
@@ -98,20 +74,20 @@ const About = () => {
         </div>
       </section>
 
-      {/* Values Section */}
+      {/* Personal Values Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
-              Core Values
+              Personal Values
             </h2>
             <p className="text-xl text-stone-600 max-w-2xl mx-auto">
-              The principles that guide my scholarship, teaching, and advocacy work
+              The personal foundations that shape who I am and guide my work
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {values.map((value, index) => (
+            {personalValues.map((value, index) => (
               <div key={index} className="bg-stone-50 p-8 rounded-xl shadow-lg text-center">
                 <div className="text-amber-700 mb-4 flex justify-center">
                   {value.icon}
@@ -124,51 +100,21 @@ const About = () => {
         </div>
       </section>
 
-      {/* Expertise Section */}
-      <section className="py-20 bg-stone-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
-              Areas of Expertise
-            </h2>
-            <p className="text-xl text-stone-600 max-w-2xl mx-auto">
-              Scholarly and professional competencies developed through research, teaching, and practice
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {expertise.map((skill, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-md">
-                <div className="flex justify-between items-center mb-3">
-                  <h3 className="text-lg font-semibold text-stone-900">{skill.name}</h3>
-                  <span className="text-amber-700 font-semibold">{skill.level}%</span>
-                </div>
-                <div className="w-full bg-stone-200 rounded-full h-3">
-                  <div
-                    className="bg-gradient-to-r from-amber-600 to-amber-700 h-3 rounded-full transition-all duration-1000"
-                    style={{ width: `${skill.level}%` }}
-                  ></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Timeline Section */}
+      {/* Key Milestones Section */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
-              Achievements & Milestones
+              Key Milestones
             </h2>
             <p className="text-xl text-stone-600">
-              Recognition and milestones in academic and advocacy work
+              Defining moments in my journey as a scholar and advocate
             </p>
           </div>
           
           <div className="space-y-8">
-            {achievements.map((achievement, index) => (
+            {keyAchievements.map((achievement, index) => (
               <div key={index} className="flex items-start space-x-6">
                 <div className="flex-shrink-0">
                   <div className="bg-amber-700 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold">
@@ -192,27 +138,60 @@ const About = () => {
 
       {/* Personal Journey */}
       <section className="py-20 bg-stone-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-8">
-            My Journey
-          </h2>
-          <div className="bg-white p-8 rounded-xl shadow-lg">
-            <p className="text-lg text-stone-600 leading-relaxed mb-6">
-              My path to criminology was shaped by personal experiences with injustice and a deep 
-              commitment to my faith and community. As a Black, queer, Christian scholar, I bring 
-              lived experience to my academic work, understanding firsthand the intersections of 
-              identity, oppression, and resilience.
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-4">
+              My Journey
+            </h2>
+            <p className="text-xl text-stone-600">
+              The personal experiences and pivotal moments that shaped my calling
             </p>
-            <p className="text-lg text-stone-600 leading-relaxed mb-6">
-              My legal training at Brooklyn Law School grounded me in advocacy and policy work, 
-              while my doctoral studies at Rutgers allowed me to develop theoretical frameworks 
-              that center marginalized voices. This combination of legal and academic training 
-              informs my approach to scholarship that serves communities.
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div className="bg-white p-8 rounded-xl shadow-lg">
+              <h3 className="text-2xl font-bold text-stone-900 mb-4">Early Foundations</h3>
+              <p className="text-lg text-stone-600 leading-relaxed mb-4">
+                Growing up as a Black, queer person in America, I experienced firsthand the 
+                intersections of identity, oppression, and resilience. These experiences weren't 
+                just academic concepts—they were my reality.
+              </p>
+              <p className="text-lg text-stone-600 leading-relaxed">
+                My Christian faith became both anchor and compass, teaching me that justice 
+                work is sacred work, and that each person carries inherent dignity worthy 
+                of protection and advocacy.
+              </p>
+            </div>
+            
+            <div className="bg-white p-8 rounded-xl shadow-lg">
+              <h3 className="text-2xl font-bold text-stone-900 mb-4">Academic Calling</h3>
+              <p className="text-lg text-stone-600 leading-relaxed mb-4">
+                My path to criminology wasn't traditional. Personal encounters with injustice 
+                sparked questions I couldn't ignore: Why do certain communities bear the brunt 
+                of criminalization? How can systems designed to protect actually heal?
+              </p>
+              <p className="text-lg text-stone-600 leading-relaxed">
+                Law school at Emory University gave me tools for advocacy, while my environmental 
+                science background at Tuskegee University taught me to see connections between 
+                social and ecological justice.
+              </p>
+            </div>
+          </div>
+          
+          <div className="bg-gradient-to-r from-amber-50 to-stone-100 p-8 rounded-xl">
+            <h3 className="text-2xl font-bold text-stone-900 mb-6 text-center">Today's Mission</h3>
+            <p className="text-lg text-stone-600 leading-relaxed mb-4 text-center">
+              My doctoral work at John Jay College allowed me to develop the theoretical frameworks 
+              I'd been searching for—ways to center marginalized voices and lived experiences in 
+              criminological scholarship.
             </p>
-            <p className="text-lg text-stone-600 leading-relaxed">
-              Today, I continue to bridge the worlds of academia, advocacy, and community organizing, 
+            <blockquote className="text-xl text-stone-700 leading-relaxed italic text-center border-l-4 border-amber-600 pl-6">
+              "I continue to bridge the worlds of academia, advocacy, and community organizing, 
               always asking: How can our work contribute to liberation and healing? How can we 
-              transform systems rather than simply reform them?
+              transform systems rather than simply reform them?"
+            </blockquote>
+            <p className="text-center text-stone-600 mt-4 font-medium">
+              This question drives everything I do—from the classroom to the courtroom to community spaces.
             </p>
           </div>
         </div>
