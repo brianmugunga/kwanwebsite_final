@@ -12,10 +12,13 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
+    # Necessary permissions to fix the previous token error
     permissions:
-  contents: read
-  pages: write
-  id-token: write
+      contents: read
+      pages: write
+      id-token: write
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -23,16 +26,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Use a stable Node version
+          node-version: '20'
 
       - name: Install Dependencies
         run: npm install
 
-      # This is the crucial step that runs your build command
+      # This runs your build command (npm run build)
       - name: Build Project
         run: npm run build
 
-      # Configure GitHub Pages
+      # Configure GitHub Pages environment
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
