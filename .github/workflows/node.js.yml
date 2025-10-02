@@ -1,0 +1,51 @@
+# Name of the action that shows up in the 'Actions' tab
+name: Deploy Vite Project to GitHub Pages
+
+# When the action should run
+on:
+  push:
+    branches: ["main"]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# The job that builds and deploys the site
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    # Necessary permissions to fix the previous token error
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      # This runs your build command (npm run build)
+      - name: Build Project
+        run: npm run build
+
+      # Configure GitHub Pages environment
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # Uploads the 'dist' folder as the final website artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist' # TELLS GITHUB TO USE THE DIST FOLDER
+
+      # Deploys the artifact to the GitHub Pages URL
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
