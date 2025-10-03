@@ -68,13 +68,13 @@ const About = () => {
               </div>
             </div>
             
-            {/* FIXED IMAGE BLOCK */}
+            {/* MODIFIED IMAGE BLOCK: Prioritizes face, fills width */}
             <div className="relative">
               <div className="bg-gradient-to-r from-amber-600 to-stone-700 rounded-2xl h-[500px] w-full overflow-hidden shadow-2xl">
                 <img 
                   src={profilePhotoPath} 
                   alt="Dr. Kwan-Lamar Blount-Hill Professional Headshot" 
-                  className="h-full object-contain object-center mx-auto transition-all duration-300 hover:scale-105"
+                  className="w-full h-full object-cover object-top transition-all duration-300 hover:scale-105" // Key changes here
                 />
               </div>
             </div>
