@@ -68,13 +68,13 @@ const About = () => {
               </div>
             </div>
             
-            {/* MODIFIED IMAGE BLOCK: Prioritizes face, fills width */}
+            {/* MODIFIED IMAGE BLOCK */}
             <div className="relative">
-              <div className="bg-gradient-to-r from-amber-600 to-stone-700 rounded-2xl h-[500px] w-full overflow-hidden shadow-2xl">
+              <div className="bg-gradient-to-r from-amber-600 to-stone-700 rounded-2xl h-[550px] w-full overflow-hidden shadow-2xl"> {/* HEIGHT INCREASED TO 550PX */}
                 <img 
                   src={profilePhotoPath} 
                   alt="Dr. Kwan-Lamar Blount-Hill Professional Headshot" 
-                  className="w-full h-full object-cover object-top transition-all duration-300 hover:scale-105" // Key changes here
+                  className="w-full h-full object-cover object-top transition-all duration-300 hover:scale-105" 
                 />
               </div>
             </div>
@@ -135,7 +135,7 @@ const About = () => {
                       {achievement.title}
                     </h3>
                     <span className="text-amber-700 font-medium">{achievement.year}</span>
-                  </div>
+                </div>
                   <p className="text-stone-600">{achievement.description}</p>
                 </div>
               </div>
