@@ -69,13 +69,13 @@ const About = () => {
                 </Link>
               </div>
             </div>
-            
-            {/* 2. MODIFIED IMAGE BLOCK: Replaced the placeholder div with a proper img tag */}
+            
+            {/* 2. MODIFIED IMAGE BLOCK: Height changed from h-96 to h-[500px] */}
             <div className="relative">
-              <div className="bg-gradient-to-r from-amber-600 to-stone-700 rounded-2xl h-96 w-full overflow-hidden shadow-2xl">
-                <img 
-                  src={profilePhotoPath} 
-                  alt="Dr. Kwan-Lamar Blount-Hill Professional Headshot" 
+              <div className="bg-gradient-to-r from-amber-600 to-stone-700 rounded-2xl h-[500px] w-full overflow-hidden shadow-2xl">
+                <img 
+                  src={profilePhotoPath} 
+                  alt="Dr. Kwan-Lamar Blount-Hill Professional Headshot" 
                   className="w-full h-full object-cover object-center transition-all duration-300 hover:scale-105"
                 />
               </div>
