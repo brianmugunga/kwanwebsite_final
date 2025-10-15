@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BookOpen, Download, ExternalLink, Calendar, Users, Filter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import BiologicalConservationCover from '../assets/publications/Biological Conservation journal.jpg';
-import CriminalJusticeBehaviorCover from '../assets/publications/Criminal Justice and Behavior journal.jpg';
+import CriminalJusticeBehaviorCover from '../assets/publications/test.jpeg';
 
 const Publications = () => {
   const [activeFilter, setActiveFilter] = useState('all');
