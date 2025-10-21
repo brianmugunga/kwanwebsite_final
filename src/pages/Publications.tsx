@@ -159,7 +159,7 @@ const Publications = () => {
           </h1>
           <p className="text-xl text-stone-300 max-w-3xl mx-auto leading-relaxed">
             Scholarly publications, reports, and media features advancing justice-centered 
-            scholarship and public discourse on criminology and social justice.
+            scholarship and public discourse on criminology and social justice."This is Yassin's content that i have included as a test for content management."
           </p>
         </div>
       </section>
