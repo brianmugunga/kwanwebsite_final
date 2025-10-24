@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
-  branch: main # or master, depending on your repo
+  name: github
+  repo: brianmugunga/kwanwebsite_final
+  branch: main
+  base_url: https://elegant-heliotrope-5da109.netlify.app
+  auth_endpoint: /api/auth
 
 # Optional: for local development
 local_backend: true
