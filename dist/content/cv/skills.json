@@ -1,0 +1,22 @@
+{
+  "categories": [
+    {
+      "name": "Research Methodologies",
+      "skills": [
+        "Qualitative Research",
+        "Quantitative Analysis",
+        "Mixed Methods",
+        "Statistical Analysis"
+      ]
+    },
+    {
+      "name": "Legal Expertise",
+      "skills": [
+        "Criminal Law",
+        "Constitutional Law",
+        "Civil Rights Law",
+        "Policy Analysis"
+      ]
+    }
+  ]
+}
