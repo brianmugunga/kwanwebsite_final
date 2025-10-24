@@ -13,7 +13,7 @@ import Contact from './pages/Contact';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/kwanwebsite_final">
       <div className="min-h-screen bg-stone-50">
         <Navbar />
         <main>
