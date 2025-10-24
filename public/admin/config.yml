@@ -1,5 +1,5 @@
 backend:
-  name: github
+  name: git-gateway
   repo: brianmugunga/kwanwebsite_final
   branch: main
   base_url: https://elegant-heliotrope-5da109.netlify.app
