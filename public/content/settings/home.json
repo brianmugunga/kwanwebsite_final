@@ -1,0 +1,24 @@
+{
+  "hero_title": "Dr. Kwan-Lamar Blount-Hill",
+  "hero_subtitle": "Scholar • Attorney • Advocate",
+  "hero_intro": "I am a Black, queer, Christian criminologist, attorney, and advocate dedicated to advancing justice through scholarship, teaching, and community engagement.",
+  "hero_image": "/kwanbh-photo.jpg",
+  "stats": [
+    {
+      "value": "8+",
+      "label": "Years Experience"
+    },
+    {
+      "value": "33+",
+      "label": "Publications"
+    },
+    {
+      "value": "4+",
+      "label": "Universities"
+    },
+    {
+      "value": "$1.2M+",
+      "label": "Research Funding"
+    }
+  ]
+}
