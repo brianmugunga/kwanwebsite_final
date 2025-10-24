@@ -3,7 +3,7 @@ backend:
   repo: brianmugunga/kwanwebsite_final
   branch: main
   base_url: https://elegant-heliotrope-5da109.netlify.app
-  auth_endpoint: /api/auth
+  auth_endpoint: /.netlify/functions/auth
 
 # Optional: for local development
 local_backend: true
