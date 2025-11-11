@@ -4,8 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
-  <!-- This line forces the browser to load the new config file. We change '?v=2' to '?v=3' on future updates to bust the cache. -->
-  <link rel="cms-config-url" href="/kwanwebsite_final/admin/config.yml?v=2">
+  <!-- Force browser to load the correct config file -->
+  <link rel="cms-config-url" href="config.yml?v=3">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
