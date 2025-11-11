@@ -1,13 +1,16 @@
 name: Deploy on Sanity Content Change
 
+# DISABLED: This workflow is redundant - other GitHub Pages workflows handle deployment
+# on:
+#   # This event listens for the 'trigger-deploy' signal from the Sanity webhook.
+#   repository_dispatch:
+#     types: [trigger-deploy]
+#   # This also runs when you push code changes to your main branch.
+#   push:
+#     branches:
+#       - main
 on:
-  # This event listens for the 'trigger-deploy' signal from the Sanity webhook.
-  repository_dispatch:
-    types: [trigger-deploy]
-  # This also runs when you push code changes to your main branch.
-  push:
-    branches:
-      - main 
+  workflow_dispatch: # Only allow manual runs, disabled automatic triggers 
 
 jobs:
   deploy:
