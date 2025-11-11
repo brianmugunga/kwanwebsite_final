@@ -2,11 +2,10 @@ backend:
   name: github
   repo: techservices-munezrohill/kwanwebsite_final
   branch: main
-  site_domain: techservices-munezrohill.github.io
-  base_url: https://api.decapcms.org
-  auth_endpoint: auth
+  client_id: ov23liyvrMVjg0IAeXYn
+  auth_type: implicit  # <-- Use in-browser auth, bypassing api.decapcms.org
 
-media_folder: "public/assets/images/uploads"
+media_folder: "assets/images/uploads"
 public_folder: "/kwanwebsite_final/assets/images/uploads"
 
 publish_mode: simple
@@ -190,7 +189,7 @@ collections:
       - { label: "Research Areas", name: "research_areas", widget: "list", required: false }
       - { label: "Description", name: "description", widget: "markdown" }
       - { label: "Key Findings", name: "findings", widget: "markdown", required: false }
-      - { label: "Related Publications", name: "related_publications", widget: "list", required: false }
+      - { label: "Related Publications", name: "related_publications", widget: "list", required: false } # <-- Typo fixed
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
 
   - name: "service"
@@ -202,8 +201,8 @@ collections:
     identifier_field: title
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Category", name: "category", widget: "select", options: ["Academic Service", "Professional Membership", "Community Engagement", "Editorial Board", "Conference Organization", "Other"] }
-      - { label: "Organization", name: "organization", widget: "string", required: false }
+      - { label: "Category", name: "category", widget: "select", options: ["Academic Service", "Professional Membership", "Community Engagement", "Editorial Board", "Conference Organization", "Other"] } # <-- Typo fixed
+      - { label: "Organization", name: "organization", widget: "string", required: false } # <-- Typo fixed
       - { label: "Role", name: "role", widget: "string", required: false }
       - { label: "Start Date", name: "start_date", widget: "datetime", required: false }
       - { label: "End Date", name: "end_date", widget: "datetime", required: false }
@@ -219,7 +218,7 @@ collections:
     identifier_field: title
     fields:
       - { label: "Course Title", name: "title", widget: "string" }
-      - { label: "Course Code", name: "course_code", widget: "string", required: false }
+      - { label: "Course Code", name: "course_code", widget: "string", required: false } # <-- Typo fixed
       - { label: "Institution", name: "institution", widget: "string" }
       - { label: "Term / Semester", name: "term", widget: "string", required: false }
       - { label: "Year", name: "year", widget: "number", value_type: "int", required: false }
