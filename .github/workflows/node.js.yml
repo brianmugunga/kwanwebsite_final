@@ -12,7 +12,7 @@ jobs:
     # Required permissions for GitHub Pages deployment
     permissions:
       contents: read
-      pages: write 
+      pages: write  
       id-token: write
 
     steps:
@@ -28,8 +28,12 @@ jobs:
         run: npm install
 
       - name: Build Project
-        # The 'base' option is CRITICAL for Vite projects deployed to a subpath like /kwanbh-website/
-        run: npm run build -- --base=/kwanbh-website/ 
+        # FIXED: The 'base' path must match your repository name
+        run: npm run build -- --base=/kwanwebsite_final/ 
+
+      - name: Copy admin folder
+        # ADDED: This copies your /admin folder into the build directory
+        run: cp -r admin dist
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
