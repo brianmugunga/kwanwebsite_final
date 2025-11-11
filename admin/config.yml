@@ -5,6 +5,7 @@ backend:
   site_domain: techservices-munezrohill.github.io
   base_url: https://api.decapcms.org
   auth_endpoint: auth
+  client_id: ov23liyvrMVjg0IAeXYn  # <-- This is the line I added
 
 media_folder: "assets/images/uploads"
 public_folder: "/kwanwebsite_final/assets/images/uploads"
@@ -165,7 +166,7 @@ collections:
       - { label: "Issue", name: "issue", widget: "string", required: false }
       - { label: "Pages", name: "pages", widget: "string", required: false }
       - { label: "DOI", name: "doi", widget: "string", required: false }
-      - { label: "PDF Link", name: "pdf_link", widget: "string", required: false }
+      - { label:G "PDF Link", name: "pdf_link", widget: "string", required: false }
       - { label: "Cover Image", name: "cover_image", widget: "image", required: false }
       - { label: "Abstract", name: "abstract", widget: "markdown", required: false }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
@@ -203,7 +204,7 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Category", name: "category", widget: "select", options: ["Academic Service", "Professional Membership", "Community Engagement", "Editorial Board", "Conference Organization", "Other"] }
-      - { label: "Organization", name: "organization", widget: "string", required: false }
+      - { label:M "Organization", name: "organization", widget: "string", required: false }
       - { label: "Role", name: "role", widget: "string", required: false }
       - { label: "Start Date", name: "start_date", widget: "datetime", required: false }
       - { label: "End Date", name: "end_date", widget: "datetime", required: false }
@@ -226,4 +227,3 @@ collections:
       - { label: "Level", name: "level", widget: "select", options: ["Undergraduate", "Graduate", "Both"], required: false }
       - { label: "Description", name: "description", widget: "markdown", required: false }
       - { label: "Syllabus", name: "syllabus", widget: "file", required: false }
-
