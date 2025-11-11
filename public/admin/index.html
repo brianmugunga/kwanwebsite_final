@@ -1,31 +1,11 @@
-<script>
-const REPO_BASE_PATH = "/kwanwebsite_final/";
-const ADMIN_PATH = REPO_BASE_PATH + "admin/";
-
-// 1. Check if the URL contains the special authentication token
-const url = new URL(window.location.href);
-const hash = url.hash;
-
-if (hash.includes("token=") || hash.includes("type=recovery")) {
-    // If an invitation/recovery token is present, redirect to the correct path
-    // while keeping the token, which is essential for the process to complete.
-
-    // This redirect is needed because the Netlify Identity callback starts at the ROOT path.
-    const targetUrl = ADMIN_PATH + hash;
-
-    console.log("Found auth token. Redirecting to:", targetUrl);
-    window.location.replace(targetUrl);
-}
-
-// 2. Initialize the Netlify Identity widget and handle post-login redirect
-if (window.netlifyIdentity) {
-  window.netlifyIdentity.on("init", user => {
-    if (!user) {
-      window.netlifyIdentity.on("login", () => {
-        // After successful login, redirect to the admin panel
-        document.location.href = ADMIN_PATH; 
-      });
-    }
-  });
-}
-</script>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Manager</title>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</head>
+<body>
+</body>
+</html>
