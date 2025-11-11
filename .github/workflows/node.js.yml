@@ -31,10 +31,6 @@ jobs:
         # FIXED: The 'base' path must match your repository name
         run: npm run build -- --base=/kwanwebsite_final/ 
 
-      - name: Copy admin folder
-        # ADDED: This copies your /admin folder into the build directory
-        run: cp -r admin dist
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
