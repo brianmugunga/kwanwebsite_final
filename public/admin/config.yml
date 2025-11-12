@@ -2,10 +2,10 @@ backend:
   name: github
   repo: techservices-munezrohill/kwanwebsite_final
   branch: main
-  client_id: ov23liyvrMVjg0IAeXYn
-  auth_type: implicit  # <-- Use in-browser auth, bypassing api.decapcms.org
+  auth_type: implicit
+  app_id: ov23liyvrMVjg0IAeXYn
 
-media_folder: "assets/images/uploads"
+media_folder: "public/assets/images/uploads"
 public_folder: "/kwanwebsite_final/assets/images/uploads"
 
 publish_mode: simple
